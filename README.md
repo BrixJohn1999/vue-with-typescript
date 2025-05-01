@@ -31,3 +31,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+https://youtu.be/5oKpoqmUj64?t=373

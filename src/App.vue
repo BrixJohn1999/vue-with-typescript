@@ -1,25 +1,36 @@
+<script lang="ts" setup>
+import { ref } from "vue";
+import TaskForm from "./components/TaskForm.vue";
+import type { Task } from "./types";
+
+const message = ref<string>("Task Application");
+const tasks = ref<Task[]>([]);
+
+function addTask(newTask: string) {
+  tasks.value.push({
+    id: crypto.randomUUID(),
+    title: newTask,
+    done: false,
+  });
+  console.log("New Task: ", newTask);
+}
+</script>
+
 <template>
   <main>
-    <h1>Welcome to Your Vue.js App</h1>
-    <p>
-      This is a simple Vue.js application that serves as a starting point for
-      your projects.
-    </p>
-    <p>
-      You can modify this template to suit your needs and start building your
-      application.
-    </p>
-    `
+    <h1>{{ message }}</h1>
+    <TaskForm @add-task="addTask" />
+    <h3>There are {{ tasks.length }} tasks.</h3>
   </main>
 </template>
 
-<script lang="ts" setup>
-import { defineComponent } from "vue";
-</script>
-
-<style scoped>
+<style>
 main {
   max-width: 800px;
   margin: 1rem auto;
+}
+.button-container {
+  display: flex;
+  justify-content: end;
 }
 </style>
